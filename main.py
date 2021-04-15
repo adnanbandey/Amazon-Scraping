@@ -1,19 +1,19 @@
-print('shuru')
+print('start')
 
 from urllib.parse import urlparse
+import os
 import time
 import requests
 from selenium import webdriver
 import time
 import math, requests, json
-from scrapy.http import HtmlResponse
 from datetime import datetime
 from datetime import date
 
 from gspread_pandas import Spread,Client
 from datetime import timedelta
-from sqlalchemy import create_engine
-import psycopg2 
+#from sqlalchemy import create_engine
+#import psycopg2 
 import io
 import numpy as np
 import pandas as pd
@@ -24,17 +24,8 @@ import re
 import schedule
 from bs4 import BeautifulSoup
 
-from selenium import webdriver
-import os
-
-print('start')
-
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+import schedule
+import time
 
 print('start1')
 
@@ -145,15 +136,20 @@ def job():
     table_updated=spread.sheet_to_df(sheet=sheet,index=0)
     x=table_updated.shape[0]
 
-
     # spread.df_to_sheet(df,index=False,start=(1,1),headers=True)
     spread.df_to_sheet(df,index=False,start=(x+2,1),headers=False)
     print('Pushed to ghseet')
     print(d_11)
-    
-    schedule.every().minute.at(":17").do(job)
-    #schedule.every().day.at('09:00').do(job)
-    
+
+    # schedule.every(10).seconds.do(job)
+schedule.every(3).minutes.do(job)
+    # schedule.every().hour.do(job)
+    # schedule.every().day.at("10:30").do(job)
+    # schedule.every(5).to(10).minutes.do(job)
+    # schedule.every().monday.do(job)
+    # schedule.every().wednesday.at("13:15").do(job)
+    # schedule.every().minute.at(":17").do(job)
+
 while True:
     schedule.run_pending()
-    time.sleep(1) # wait one minute
+    time.sleep(1)
