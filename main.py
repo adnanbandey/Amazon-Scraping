@@ -1,3 +1,5 @@
+print('shuru')
+
 from urllib.parse import urlparse
 import time
 import requests
