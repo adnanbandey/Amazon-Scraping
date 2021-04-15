@@ -3,7 +3,7 @@ print('start')
 #from urllib.parse import urlparse
 import os
 import time
-import requests
+#import requests
 from selenium import webdriver
 import time
 import math, requests, json
@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 
 #import warnings
-warnings.filterwarnings('ignore')
+#warnings.filterwarnings('ignore')
 import re
 import schedule
 from bs4 import BeautifulSoup
