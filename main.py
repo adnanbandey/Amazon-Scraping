@@ -1,6 +1,6 @@
 print('start')
 
-from urllib.parse import urlparse
+#from urllib.parse import urlparse
 import os
 import time
 import requests
