@@ -17,8 +17,8 @@ from datetime import timedelta
 import io
 import numpy as np
 import pandas as pd
-import requests
-import warnings
+
+#import warnings
 warnings.filterwarnings('ignore')
 import re
 import schedule
@@ -35,9 +35,15 @@ def job():
 
     d_11=d_1.strftime("%Y-%m-%d")
     print(d_11)
-
-
-    browser = webdriver.Chrome()
+    
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    
+    #browser = webdriver.Chrome()
 
     fd=pd.DataFrame(columns=['Ranking', 'Name', 'ASIN', 'Prices', 'Actual Price', 'Discount', 'Tags',
            'Ads', 'Brand', 'Number of ratings', 'Overall Rating',
