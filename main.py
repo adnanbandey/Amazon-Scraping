@@ -137,7 +137,8 @@ def job():
     print('Pushed to ghseet')
     print(d_11)
     
-    schedule.every().day.at('09:00').do(job)
+    schedule.every().minute.at(":17").do(job)
+    #schedule.every().day.at('09:00').do(job)
     
 while True:
     schedule.run_pending()
