@@ -1,5 +1,4 @@
 from urllib.parse import urlparse
-import os
 import time
 import requests
 from selenium import webdriver
@@ -26,12 +25,16 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import os
 
+print('start')
+
 chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+print('start1')
 
 def job():
     now = datetime.now()
